@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Fraunces', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --background: #FFFDF7;
+  --foreground: #1C1917;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-body);
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D6D3D1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A8A29E;
+}
+
+/* Mobile viewport fix */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .font-display {
+    font-family: var(--font-display);
+  }
+  
+  .font-body {
+    font-family: var(--font-body);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-sage-600 text-white px-4 py-2.5 rounded-xl font-medium 
+           hover:bg-sage-700 active:scale-[0.98] transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-sage-500 focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-cream-200 text-stone-700 px-4 py-2.5 rounded-xl font-medium 
+           hover:bg-cream-300 active:scale-[0.98] transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2;
+  }
+  
+  .btn-danger {
+    @apply bg-terracotta-100 text-terracotta-700 px-4 py-2.5 rounded-xl font-medium 
+           hover:bg-terracotta-200 active:scale-[0.98] transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-terracotta-400 focus:ring-offset-2;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-stone-100 p-4;
+  }
+  
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-stone-200 bg-white
+           focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent
+           placeholder:text-stone-400 transition-all duration-150;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-stone-600 mb-1.5;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .badge-sage {
+    @apply badge bg-sage-100 text-sage-700;
+  }
+  
+  .badge-terracotta {
+    @apply badge bg-terracotta-100 text-terracotta-700;
+  }
+  
+  .badge-stone {
+    @apply badge bg-stone-100 text-stone-600;
+  }
+}
+
+/* Quagga barcode scanner styles */
+.scanner-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #1c1917;
+}
+
+/* Quagga injects video and canvas - style them */
+.scanner-container > video,
+.scanner-container video {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 1;
+}
+
+.scanner-container > canvas,
+.scanner-container canvas {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2;
+}
+
+.scanner-container .drawingBuffer {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2;
+}
